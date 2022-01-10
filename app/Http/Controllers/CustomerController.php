@@ -12,7 +12,7 @@ class CustomerController extends Controller
 {
     public function index(){
 
-        $customers = Customer::orderBy('name', 'ASC')->get();
+        $customers = Customer::where('active',1)->orderBy('name', 'ASC')->get();
         return view('customer.index', compact('customers'));
 
     }

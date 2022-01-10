@@ -4,7 +4,8 @@
 
 <form action="{{route('customer.store')}}" method="post">
 
-  @include('customer.form')
+  @include('customer._partial.form')
+  <button type="submit">Save Customer</button>
 </form>
 
 <a href="{{route('customer.index')}}">Voltar</a>

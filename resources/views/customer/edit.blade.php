@@ -6,7 +6,7 @@
 
   @method('PUT')
 
-  @include('customer.form')
+  @include('customer._partial.form')
 
   <button type="submit">Save Customer</button>
 </form>
