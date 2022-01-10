@@ -23,4 +23,6 @@
   <button type="submit">Add Customer</button>
 </form>
 
+<a href="{{route('customer.index')}}">Voltar</a>
+
     

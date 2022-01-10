@@ -30,4 +30,38 @@ class CustomerController extends Controller
 
         return redirect()->back();
     }
+
+    public function show($id){
+
+        $customer = Customer::findOrFail($id);
+
+        return view('customer.show', compact('customer'));
+
+    }
+
+    public function edit($id){
+
+        $customer = Customer::findOrFail($id);
+
+        return view('customer.edit', compact('customer'));
+
+    }
+
+    public function update(Customer $customer, $id){
+
+        $data = request()->validate([
+            'name'=>'required',
+            'email'=>'email|required'
+        ]);
+        // dd($data);
+
+        $customer = $customer->findOrFail($id);
+
+        $customer->update($data);
+
+        return redirect()->route('customer.index');
+
+        
+
+    }
 }
