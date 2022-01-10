@@ -20,4 +20,5 @@ Route::get('/', function () {
 
 Route::get('/hello', 'HelloController@index');
 Route::get('/about', 'HelloController@about');
-Route::get('/services','HelloController@services');
+Route::get('/service','ServiceController@index')->name('service.index');
+Route::post('/service','ServiceController@store');
