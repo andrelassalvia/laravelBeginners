@@ -20,5 +20,12 @@ Route::get('/', function () {
 
 Route::get('/hello', 'HelloController@index');
 Route::get('/about', 'HelloController@about');
+
+// Services
 Route::get('/service','ServiceController@index')->name('service.index');
 Route::post('/service','ServiceController@store');
+
+// Customers
+Route::get('/customers', 'CustomerController@index')->name('customer.index');
+Route::get('/customers/create', 'CustomerController@create')->name('customer.create');
+Route::post('/customers', 'CustomerController@store')->name('customer.store');
