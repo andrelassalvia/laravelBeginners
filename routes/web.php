@@ -32,3 +32,4 @@ Route::post('/customers', 'CustomerController@store')->name('customer.store');
 Route::get('customers/show/{id}','CustomerController@show')->name('customer.show');
 Route::get('customers/{id}/edit','CustomerController@edit')->name('customer.edit');
 Route::any('customers/{id}', 'CustomerController@update')->name('customer.update');
+Route::delete('customers/{id}','CustomerController@destroy')->name('customer.delete');
