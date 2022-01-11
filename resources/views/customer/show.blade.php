@@ -4,6 +4,11 @@
 
   <p>{{$customer->name}}</p>
   <p>{{$customer->email}}</p>
+  @if ($customer->active === 1)
+    <p>active</p>
+  @else
+    <p>inactive</p>
+  @endif
   
   <a href="{{route('customer.edit', $customer->id)}}">Editar</a>
 

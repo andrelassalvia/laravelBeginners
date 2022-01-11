@@ -15,6 +15,13 @@
     <p style="color: red">{{$message}}</p>
     @enderror
   </div>
+  <div style="margin-bottom: 10px">
+    <label for="active">Active</label>
+    <select name="active" id="active">
+      <option value="1">active</option>
+      <option value="0">inactive</option>
+    </select>
+  </div>
 
   @csrf
 

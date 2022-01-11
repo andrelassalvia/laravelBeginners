@@ -12,7 +12,8 @@ class CustomerController extends Controller
 {
     public function index(){
 
-        $customers = Customer::where('active',1)->orderBy('name', 'ASC')->get();
+        $customers = Customer::where('active',request()->query('active', 1))->orderBy('name', 'ASC')->get();
+        // ao inves de request()->query() poderiamos usar request()->input() para pegar de formularios
         return view('customer.index', compact('customers'));
 
     }
@@ -27,8 +28,10 @@ class CustomerController extends Controller
     public function store(Customer $customer,  CustomerRequest $validation){
 
         $data = $validation->all();
+        // dd($data);
 
         $cus = $customer->create($data);
+        // dd($cus);
 
         // retorna para os detalhes do cliente cadastrado
         return redirect()->route('customer.show', $cus->id);
