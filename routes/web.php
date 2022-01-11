@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\HelloController;
+use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/email', function () {
+
+//     Mail::to('andrelassalvia@gmail.com')->send(new WelcomeMail());
+
+//     return new WelcomeMail();
+// });
 
 Route::get('/hello', 'HelloController@index');
 Route::get('/about', 'HelloController@about');

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerRequest;
+use App\Mail\WelcomeMail;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use Illuminate\Support\Facades\Mail;
 
 
 class CustomerController extends Controller
@@ -22,16 +24,18 @@ class CustomerController extends Controller
 
         $customer = new Customer();
 
+        
         return view('customer.create', compact('customer'));
     }
-
+    
     public function store(Customer $customer,  CustomerRequest $validation){
-
+        
         $data = $validation->all();
         // dd($data);
-
+        
         $cus = $customer->create($data);
         // dd($cus);
+        Mail::to($customer->email)->send(new WelcomeMail() );
 
         // retorna para os detalhes do cliente cadastrado
         return redirect()->route('customer.show', $cus->id);
