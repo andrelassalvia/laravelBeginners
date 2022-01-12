@@ -4,6 +4,7 @@ use App\Http\Controllers\HelloController;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,5 +40,10 @@ Route::get('customers/{id}/edit','CustomerController@edit')->name('customer.edit
 Route::any('customers/{id}', 'CustomerController@update')->name('customer.update');
 Route::delete('customers/{id}','CustomerController@destroy')->name('customer.delete');
 Auth::routes();
+
+// Questionnaires
+Route::get('/questionnaire/create', 'QuestionnaireController@create')->name('questionnaire.create');
+Route::post('questionnaire', 'QuestionnaireController@store')->name('questionnaire.store');
+Route::get('questionnaire/show/{id}', 'QuestionnaireController@show')->name('questionnaire.show');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
