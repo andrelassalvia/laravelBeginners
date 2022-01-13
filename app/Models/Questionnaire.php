@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
+
 
 class Questionnaire extends Model
 {
@@ -15,4 +15,10 @@ class Questionnaire extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function questions(){
+        return $this->hasMany(Question::class, 'questionnaire_id', 'id');
+    }
+
+    
 }

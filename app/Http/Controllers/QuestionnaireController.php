@@ -11,19 +11,19 @@ use App\Models\User;
 class QuestionnaireController extends Controller
 {
 
-    public function __construct(){
+    // public function __construct(){
 
-        // Proteger a classe com o a autenticacao
-        $this->middleware('auth');
+    //     // Proteger a classe com o a autenticacao
+    //     $this->middleware('auth');
 
-    }
+    // }
     
-    public function create(User $user){
+    public function create(){
 
         return view('questionnaire.create');
     }
 
-    public function store(Questionnaire $questionnaire, QuestionnaireRequest $validation){
+    public function store(QuestionnaireRequest $validation){
        
         $data = $validation->all();
 
@@ -31,14 +31,17 @@ class QuestionnaireController extends Controller
         // $quest = $questionnaire->create($data);
 
         $quest = auth()->user()->questionnaires()->create($data);
+        // dd($quest);
 
         return redirect()->route('questionnaire.show', $quest->id);
 
     }
 
-    public function show($id){
+    public function show(Questionnaire $questionnaire, $id){
         $quest = Questionnaire::find($id);
+        // dd($quest);
+        // dd($questionnaire->find($id));
         
-        return view ('questionnaire.show', compact('quest'));
+        return view ('questionnaire.show', ['quest'=>$quest, 'id'=>$id]);
     }
 }

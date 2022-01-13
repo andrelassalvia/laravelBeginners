@@ -42,8 +42,13 @@ Route::delete('customers/{id}','CustomerController@destroy')->name('customer.del
 Auth::routes();
 
 // Questionnaires
-Route::get('/questionnaire/create', 'QuestionnaireController@create')->name('questionnaire.create');
+Route::get('/questionnaire/create', 'QuestionnaireController@create')->middleware(['auth'])->name('questionnaire.create');
 Route::post('questionnaire', 'QuestionnaireController@store')->name('questionnaire.store');
 Route::get('questionnaire/show/{id}', 'QuestionnaireController@show')->name('questionnaire.show');
+
+// Questions
+Route::get('questionnaire/show/{id}/questions/create', 'QuestionController@create')->middleware(['auth'])->name('question.create');
+Route::post('questionnaire/{id}/question', 'QuestionController@store')->middleware(['auth'])->name('question.store');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
