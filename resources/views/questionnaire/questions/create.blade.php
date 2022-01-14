@@ -8,9 +8,9 @@
                 <div class="card-header text-center">Create New Question</div>
                   <div class="card-body ">
                     
-                    <form action="{{route('question.store', $quest->id)}}" method="post">
+                    <form action="{{route('question.store', $questionnaire)}}" method="post">
                       @csrf
-                      <input type="hidden" name="questionnaire_id" value="{{$quest->id}}">
+                      {{-- <input type="hidden" name="questionnaire_id" value="{{$questionnaire->id}}"> --}}
                       
                       {{-- QUESTION --}}
                       <div class="mb-3">

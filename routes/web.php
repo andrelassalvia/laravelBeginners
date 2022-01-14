@@ -44,11 +44,15 @@ Auth::routes();
 // Questionnaires
 Route::get('/questionnaire/create', 'QuestionnaireController@create')->middleware(['auth'])->name('questionnaire.create');
 Route::post('questionnaire', 'QuestionnaireController@store')->name('questionnaire.store');
-Route::get('questionnaire/show/{id}', 'QuestionnaireController@show')->name('questionnaire.show');
+Route::get('questionnaire/show/{questionnaire}', 'QuestionnaireController@show')->name('questionnaire.show');
 
 // Questions
-Route::get('questionnaire/show/{id}/questions/create', 'QuestionController@create')->middleware(['auth'])->name('question.create');
-Route::post('questionnaire/{id}/question', 'QuestionController@store')->middleware(['auth'])->name('question.store');
+Route::get('questionnaire/show/{questionnaire}/questions/create', 'QuestionController@create')->middleware(['auth'])->name('question.create');
+Route::post('questionnaire/{questionnaire}/question', 'QuestionController@store')->middleware(['auth'])->name('question.store');
+
+// Suerveys
+Route::get('surveys/{questionnaire}-{slug}', 'SurveyController@show');
+Route::post('surveys/{questionnaire}-{slug}', 'SurveyController@store');
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

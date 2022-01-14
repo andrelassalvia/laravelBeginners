@@ -11,19 +11,31 @@ use App\Models\Answer;
 class QuestionController extends Controller
 {
     //
-    public function create(Questionnaire $quest, $id){
-        // dd($id);
-        $quest = Questionnaire::find($id);
+    public function create(Questionnaire $questionnaire){
+        // dd($questionnaire);
+        // $quest = Questionnaire::find($id);
         
-        // dd($quest);
+        
 
-        return view('questionnaire.questions.create', compact('quest'));
+        return view('questionnaire.questions.create', compact('questionnaire'));
 
     }
+    
+    public function store(QuestionRequest $validation, Questionnaire $questionnaire, Question $question, Answer $answer){
+        
+        $data = $validation->all();
+        // dd($data);
 
-    public function store(Request $request, Question $question, Answer $answer){
+        $question = $questionnaire->questions()->create($data['question']);
+        
+        $question->answers()->createMany($data['answers']);
 
+        // dd($question);
 
+        return redirect()->route('questionnaire.show', compact('questionnaire'));
+
+        /*
+        $id = $request->questionnaire_id;
         
         // valida os dados do request
         $request->validate([
@@ -34,7 +46,7 @@ class QuestionController extends Controller
         
         // grava a questao no BD
         $question = Question::create([
-            'questionnaire_id'=> $request->questionnaire_id,
+            'questionnaire_id'=> $id,
             'question'=> $request->question['question'],
         ]);
         
@@ -48,8 +60,7 @@ class QuestionController extends Controller
             ]);
             
         }
-       
-        return redirect()->route('questionnaire.show');
+       */
 
         // EXEMPLO DO STACKOVERFLOW
         // <input type="text" name="items[1][title]">
@@ -69,8 +80,6 @@ class QuestionController extends Controller
 
         // $question->options()->createMany($options_data);
 
-        // $question->questionnaire->questions()->create($data['question']);
-        // $question->answers()->createMany($data['answers']);
 
     }
 }
