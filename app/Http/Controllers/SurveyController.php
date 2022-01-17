@@ -13,7 +13,7 @@ class SurveyController extends Controller
 
         $questionnaire = $questionnaire->load('questions.answers');
 
-        return view('questionnaire.survey.show', compact('questionnaire'));
+        return view('survey.show', compact('questionnaire'));
 
     }
 

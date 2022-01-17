@@ -41,6 +41,8 @@ Route::any('customers/{id}', 'CustomerController@update')->name('customer.update
 Route::delete('customers/{id}','CustomerController@destroy')->name('customer.delete');
 Auth::routes();
 
+// ================================================================================ //
+
 // Questionnaires
 Route::get('/questionnaire/create', 'QuestionnaireController@create')->middleware(['auth'])->name('questionnaire.create');
 Route::post('questionnaire', 'QuestionnaireController@store')->name('questionnaire.store');
@@ -49,6 +51,7 @@ Route::get('questionnaire/show/{questionnaire}', 'QuestionnaireController@show')
 // Questions
 Route::get('questionnaire/show/{questionnaire}/questions/create', 'QuestionController@create')->middleware(['auth'])->name('question.create');
 Route::post('questionnaire/{questionnaire}/question', 'QuestionController@store')->middleware(['auth'])->name('question.store');
+Route::delete('questionnaire/{questionnaire}/question/{question}', 'QuestionController@destroy')->middleware(['auth'])->name('question.destroy');
 
 // Suerveys
 Route::get('surveys/{questionnaire}-{slug}', 'SurveyController@show');

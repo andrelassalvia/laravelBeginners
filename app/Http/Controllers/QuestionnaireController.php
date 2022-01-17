@@ -40,10 +40,8 @@ class QuestionnaireController extends Controller
 
     public function show(Questionnaire $questionnaire){
 
-        // dd($questionnaire);
-        $questionnaire = $questionnaire->with('questions.answers')->find($questionnaire->id); // encadear relations usando ponto
-        // dd($quest);
-        // dd($questionnaire->find($id));
+        
+        $questionnaire = $questionnaire->load('questions.answers.responses'); // encadear relations usando ponto
         
         return view ('questionnaire.show', compact('questionnaire'));
     }

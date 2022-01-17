@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 
 class Questionnaire extends Model
@@ -11,6 +12,10 @@ class Questionnaire extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function publicPath(){
+        return url('/surveys'.'/'.$this->id.'-'.Str::slug($this->title));
+    }
 
     public function user(){
         return $this->belongsTo(User::class);
